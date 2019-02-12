@@ -18,8 +18,10 @@ io.on('connection', function(socket) {
    io.emit('broadcast', { description: clients + ' clients connected !'});
    
    socket.on('clientEvent', (message) => {
-   	console.log(message.text);
+   	console.log(message.text); 
    })
+   
+   socket.broadcast.emit('newMessage', { description : 'broadcast except for self'});
 
    socket.emit('testerEvent', { description:'A custom event'});
    
@@ -27,7 +29,7 @@ io.on('connection', function(socket) {
    socket.on('disconnect', function () {
       console.log('A user disconnected');
       clients--;
-      io.emit('broadcast', {description: clients + ' clinets connected'})
+      socket.broadcast.emit('newclientconnect', {description: clients + ' clinets connected'})
 
    });
 

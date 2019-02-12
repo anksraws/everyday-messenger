@@ -17,6 +17,10 @@ socket.on('broadcast' ,(message) => {
 	console.log(message.description)
 })
 
+socket.on('newclientconnect', (data) => {
+	console.log("i love "+data.description)
+})
+
 socket.on('disconnect',function () {
 	console.log('disconnected from server');
 })
